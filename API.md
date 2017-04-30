@@ -241,7 +241,7 @@ Status 201
 }
 ```
 
-## Remove book
+## Remove Dish
 ```
 DELETE /dishes/:id
 ```
@@ -258,9 +258,9 @@ Status: 404 Not Found
 }
 ```
 
-## Edit book
+## Edit Dish
 ```
-PUT /dish/:id
+PUT /dishes/:id
 ```
 
 **Parameters**
