@@ -228,7 +228,42 @@ Status 200
 ```
 
 # Meals
-## Get Menu
+## Get Next Menu
+```
+GET /menus/next
+```
 
+**Response**
+```
+Status 200
+  
+{
+  "date": "2017-5-1T14:00:00Z",
+  "firstCourses": [
+    {
+      "name": "Salad",
+      "description": "Tomatoes, lettice and bacon.",
+      "image": "https://www.google.es/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjknLawgs3TAhULVxQKHfbcAvMQjRwIBw&url=http%3A%2F%2Fjetspizza.com%2Fmenu%2Fsalads&psig=AFQjCNE447cnpJfGRhiwiN5Hys_XLrgpmQ&ust=1493670502918204"
+    },
+    ...
+  ],
+  "secondCourses": [
+    {
+      "name": "Salad",
+      "description": "Tomatoes, lettice and bacon.",
+      "image": "https://www.google.es/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjknLawgs3TAhULVxQKHfbcAvMQjRwIBw&url=http%3A%2F%2Fjetspizza.com%2Fmenu%2Fsalads&psig=AFQjCNE447cnpJfGRhiwiN5Hys_XLrgpmQ&ust=1493670502918204"
+    },
+    ...
+  ],
+  "desserts": [
+   {
+      "name": "Salad",
+      "description": "Tomatoes, lettice and bacon."
+      "image": "https://www.google.es/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjknLawgs3TAhULVxQKHfbcAvMQjRwIBw&url=http%3A%2F%2Fjetspizza.com%2Fmenu%2Fsalads&psig=AFQjCNE447cnpJfGRhiwiN5Hys_XLrgpmQ&ust=1493670502918204"
+    },
+    ...
+  ]
+}
+```
 
 ## Menu choice
