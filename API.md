@@ -152,7 +152,7 @@ Status 201
 }
 ```
 
-## Remove book
+## Remove book
 ```
 DELETE /books/:id
 ```
