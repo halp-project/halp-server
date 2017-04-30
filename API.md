@@ -8,7 +8,7 @@ POST /workers/signup
 **Parameters**
 
 | Name | Type | Description |
-| :---: |:---:| ---|
+| :---: |:---:| --- |
 | username | String | Worker username |
 | password | String | Worker password |
 | role | String | Worker role: <br> * *assistant* <br> * *books* <br> * *meals* <br> * *shop* <br> * *manager* |
@@ -266,7 +266,7 @@ PUT /dish/:id
 **Parameters**
 
 | Name | Type | Description |
-| :---: |:---:| ---|
+| :---: |:---:| :--- |
 | name | String | Name |
 | description | String | Description |
 | image | String | Image URL |
