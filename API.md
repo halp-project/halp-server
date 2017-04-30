@@ -94,7 +94,8 @@ POST /patients/login
 Status 200
   
 {
-  "id_token": "aleatory-token"
+  "id_token": "aleatory-token",
+  "username": "john"
 }
 ```
 
@@ -267,3 +268,38 @@ Status 200
 ```
 
 ## Menu choice
+```
+POST /menus/order
+```
+
+**Parameters**
+
+| Name | Type | Description |
+| :---: |:---:| ---|
+| title | String | Book title |
+| author | String | Author |
+| description | String | Description |
+| image | String | Image URL |
+
+**Example**
+```
+{
+  "title": "Sprint : How to Solve Big Problems and Test New Ideas in Just 5 Days",
+  "author": "Jake Knapp y John Zeratsky",
+  "description": "The sprint is a five-day process for answering critical business questions through design, prototyping, and testing ideas with customers.",
+  "image": "https://images-na.ssl-images-amazon.com/images/I/512V%2BzNxQ9L._SX327_BO1,204,203,200_.jpg"
+}
+```
+
+**Response**
+```
+Status 201
+  
+{
+  "id": "33",
+  "title": "Sprint : How to Solve Big Problems and Test New Ideas in Just 5 Days",
+  "author": "Jake Knapp y John Zeratsky",
+  "description": "The sprint is a five-day process for answering critical business questions through design, prototyping, and testing ideas with customers.",
+  "image": "https://images-na.ssl-images-amazon.com/images/I/512V%2BzNxQ9L._SX327_BO1,204,203,200_.jpg"
+}
+```
