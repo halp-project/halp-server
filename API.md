@@ -145,7 +145,7 @@ POST /books/new
 Status 201
   
 {
-  "id": "33",
+  "id": 33,
   "title": "Sprint : How to Solve Big Problems and Test New Ideas in Just 5 Days",
   "author": "Jake Knapp y John Zeratsky",
   "description": "The sprint is a five-day process for answering critical business questions through design, prototyping, and testing ideas with customers.",
@@ -199,7 +199,7 @@ PUT /books/:id
 Status 200
   
 {
-  "id": "33",
+  "id": 33,
   "title": "Sprint : How to Solve Big Problems and Test New Ideas in Just 5 Days",
   "author": "Jake Knapp y John Zeratsky",
   "description": "The sprint is a five-day process for answering critical business questions through design, prototyping, and testing ideas with customers.",
@@ -287,9 +287,9 @@ POST /menus/order
 {
   "date": "2017-5-1T14:00:00Z",
   "patient": "john",
-  "firstCourse": "33",
-  "secondCourse": "43",
-  "dessert": "53"
+  "firstCourse": 33,
+  "secondCourse": 43,
+  "dessert": 53
 }
 ```
 
@@ -298,12 +298,12 @@ POST /menus/order
 Status 201
   
 {
-  "id": "33"
+  "id": 33,
   "date": "2017-5-1T14:00:00Z",
   "patient": "john",
-  "firstCourse": "33",
-  "secondCourse": "43",
-  "dessert": "53"
+  "firstCourse": 33,
+  "secondCourse": 43,
+  "dessert": 53
 }
 ```
 
