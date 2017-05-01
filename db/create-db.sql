@@ -16,7 +16,6 @@ DROP TABLE IF EXISTS purchase;
 DROP TABLE IF EXISTS bookLoan;
 DROP TABLE IF EXISTS menuChoice;
 
-
 CREATE TYPE role AS ENUM ('book', 'kiosk', 'food', 'assistant', 'admin');
 CREATE TYPE dishType AS ENUM ('first', 'second', 'dessert');
 
@@ -51,7 +50,7 @@ CREATE TABLE dish (
   name VARCHAR NOT NULL,
   description VARCHAR NOT NULL,
   image VARCHAR NOT NULL,
-  typ dishType NOT NULL
+  type dishType NOT NULL
 );
 
 
