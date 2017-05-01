@@ -3,37 +3,38 @@ CREATE DATABASE halp;
 
 \c halp;
 
-DROP TABLE IF EXISTS employed;
+DROP TABLE IF EXISTS employee;
 DROP TABLE IF EXISTS patient;
 DROP TABLE IF EXISTS book;
-DROP TABLE IF EXISTS plate;
+DROP TABLE IF EXISTS dish;
 DROP TABLE IF EXISTS menu;
 DROP TABLE IF EXISTS item;
 DROP TABLE IF EXISTS patientOrder;
-DROP TABLE IF EXISTS copyBook;
-DROP TABLE IF EXISTS copyItem;
+DROP TABLE IF EXISTS bookCopy;
+DROP TABLE IF EXISTS itemCopy;
+DROP TABLE IF EXISTS purchase;
+DROP TABLE IF EXISTS bookLoan;
+DROP TABLE IF EXISTS menuChoice;
 
 
-CREATE TYPE employedType AS ENUM ('book', 'kiosk', 'food', 'assistant');
-CREATE TYPE dishType AS ENUM ('starter', 'mainDish', 'dessert');
-CREATE TYPE menuType AS ENUM ('breakfast', 'lunch', 'dinner');
+CREATE TYPE role AS ENUM ('book', 'kiosk', 'food', 'assistant', 'admin');
+CREATE TYPE dishType AS ENUM ('first', 'second', 'dessert');
 
-CREATE TABLE employed (
-  userName VARCHAR PRIMARY KEY,
+CREATE TABLE employee (
+  username VARCHAR PRIMARY KEY,
   password VARCHAR NOT NULL,
-  name VARCHAR NOT NULL,
-  lastname VARCHAR NOT NULL,
-  emal VARCHAR NOT NULL,
-  type employedType NOT NULL
+  role role NOT NULL
 );
 
 
 CREATE TABLE patient (
-  userName VARCHAR PRIMARY KEY,
+  username VARCHAR PRIMARY KEY,
   password VARCHAR NOT NULL,
   name VARCHAR NOT NULL,
   lastname VARCHAR NOT NULL,
-  description VARCHAR
+  description VARCHAR,
+  birthdate DATE NOT NULL,
+  room VARCHAR NOT NULL
 );
 
 CREATE TABLE book (
@@ -45,7 +46,7 @@ CREATE TABLE book (
 );
 
 
-CREATE TABLE plate (
+CREATE TABLE dish (
   ID SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
   description VARCHAR NOT NULL,
@@ -56,9 +57,8 @@ CREATE TABLE plate (
 
 CREATE TABLE menu (
   ID SERIAL PRIMARY KEY,
-  menuDate DATE NOT NULL,
-  type menuType NOT NULL,
-  UNIQUE (menuDate, type)
+  menuDate TIMESTAMP NOT NULL,
+  UNIQUE (menuDate)
 );
 
 
@@ -74,43 +74,44 @@ CREATE TABLE item (
 CREATE TABLE patientOrder (
   ID INTEGER PRIMARY KEY,
   orderDate TIMESTAMP NOT NULL,
-  idPatient VARCHAR REFERENCES patient(userName)
+  idPatient VARCHAR REFERENCES patient(username)
 );
 
 
-CREATE TABLE copyBook (
+CREATE TABLE bookCopy (
   referenceNumber VARCHAR PRIMARY KEY,
-  idBook INTEGER REFERENCES book(ID)
+  idBook INTEGER REFERENCES book(ID),
+  reserved BOOLEAN NOT NULL 
 );
 
 
-CREATE TABLE copyItem (
+CREATE TABLE itemCopy (
   referenceNumber VARCHAR PRIMARY KEY,
   idItem INTEGER REFERENCES item(ID)
 );
 
 
-CREATE TABLE lending (
+CREATE TABLE bookLoan (
   ID INTEGER PRIMARY KEY REFERENCES patientOrder(ID),
-  referenceNumber VARCHAR REFERENCES copyBook(referenceNumber)
+  referenceNumber VARCHAR REFERENCES bookCopy(referenceNumber)
 ); 
 
 
 CREATE TABLE purchase (
   ID INTEGER PRIMARY KEY REFERENCES patientOrder(ID),
-  referenceNumber VARCHAR REFERENCES copyItem(referenceNumber)
+  referenceNumber VARCHAR REFERENCES itemCopy(referenceNumber)
 );
 
 
 CREATE TABLE menuChoice (
   ID INTEGER PRIMARY KEY REFERENCES patientOrder(ID),
-  idStarter INTEGER REFERENCES plate(ID) NOT NULL,
-  idMainDish INTEGER REFERENCES plate(ID) NOT NULL,
-  idDessert INTEGER REFERENCES plate(ID) NOT NULL
+  idFirst INTEGER REFERENCES dish(ID) NOT NULL,
+  idSecond INTEGER REFERENCES dish(ID) NOT NULL,
+  idDessert INTEGER REFERENCES dish(ID) NOT NULL
 );
 
 CREATE TABLE dishInMenu (
-  idPlate INTEGER REFERENCES plate(ID),
+  idDish INTEGER REFERENCES dish(ID),
   idMenu INTEGER REFERENCES menu(ID),
-  PRIMARY KEY(idPlate, idMenu)
+  PRIMARY KEY(idDish, idMenu)
 );
