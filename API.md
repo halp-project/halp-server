@@ -218,7 +218,7 @@ Status 200
   
 [
   {
-    "id": "33",
+    "id": 33,
     "title": "Sprint : How to Solve Big Problems and Test New Ideas in Just 5 Days",
     "author": "Jake Knapp y John Zeratsky",
     "description": "The sprint is a five-day process for answering critical business questions through design, prototyping, and testing ideas with customers.",
@@ -531,7 +531,7 @@ POST /patients/new
 Status 201
   
 {
-  "id": "1",
+  "id": 1,
   "username": "halp_user01",
   "password": "passwd01",
   "name": "John",
@@ -594,7 +594,7 @@ PUT /patients/:id
 Status 200
   
 {
-  "id": "1",
+  "id": 1,
   "username": "halp_user01",
   "password": "passwd01",
   "name": "John",
@@ -616,7 +616,7 @@ Status 200
   
 [
   {
-    "id": "1",
+    "id": 1,
     "username": "halp_user01",
     "password": "passwd01",
     "name": "John",
