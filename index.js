@@ -9,6 +9,12 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.get('/hi/:name', (req, res) => {
+    res.send({
+        message: `Hello, ${req.params.name}`
+    })
+});
+
 app.listen(port, () => {
     console.log('API REST running on port 3000');
 });
