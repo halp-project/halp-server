@@ -306,3 +306,325 @@ Status 201
   "dessert": "53"
 }
 ```
+
+
+# Items
+## Add item
+```
+POST /items/new
+```
+
+**Parameters**
+
+| Name | Type | Description |
+| :---: |:---:| ---|
+| name | String | Item name |
+| price |Float | Price |
+| image | String | Image URL |
+| description | String | Description |
+
+**Example**
+```
+{
+  "name": "The Times",
+  "price": 1.5,
+  "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/The-Times-5-June-2013.jpg",
+  "description": "the description of this..."
+}
+```
+
+**Response**
+```
+Status 201
+  
+{
+  "id": 12,
+  "name": "The Times",
+  "price": 1.5,
+  "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/The-Times-5-June-2013.jpg",
+  "description": "the description of this..."
+}
+```
+
+## Remove item
+```
+DELETE /items/:id
+```
+
+**Response**
+```
+Status: 204 No Content
+```
+
+```
+Status: 404 Not Found
+{
+  "message": "Not existing item"
+}
+```
+
+## Edit Item
+```
+PUT /items/:id
+```
+
+**Parameters**
+
+| Name | Type | Description |
+| :---: |:---:| ---|
+| name | String | Item name |
+| price |Float | Price |
+| image | String | Image URL |
+| description | String | Description |
+
+**Example**
+```
+{
+  "name": "The Times",
+  "price": 1.5,
+  "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/The-Times-5-June-2013.jpg",
+  "description": "the description of this..."
+}
+```
+
+**Response**
+```
+Status 200
+  
+{
+  "id": 12,
+  "name": "The Times",
+  "price": 1.5,
+  "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/The-Times-5-June-2013.jpg",
+  "description": "the description of this..."
+}
+```
+
+## Get Items
+```
+GET /items
+```
+
+**Response**
+```
+Status 200
+  
+[
+  {
+    "id": 12,
+    "name": "The Times",
+    "price": 1.5,
+    "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/The-Times-5-June-2013.jpg",
+    "description": "the description of this..."
+  },
+  ...
+]
+```
+
+
+# Order
+
+## Remove order
+```
+DELETE /orders/:id
+```
+
+**Response**
+```
+Status: 204 No Content
+```
+
+```
+Status: 404 Not Found
+{
+  "message": "Not existing order"
+}
+```
+
+## Change state order
+```
+PUT /orders/:id
+```
+
+**Parameters**
+
+| Name | Type | Description |
+| :---: |:---:| ---|
+| completed | Boolean | State value |
+
+**Example**
+```
+{
+  "completed": true
+}
+```
+
+**Response**
+```
+Status 200
+  
+{
+    "id": 12,
+    "date": "2017-04-04 18:05",
+    "patient": { ... },
+    "type": "...",
+    "completed": true,
+    "description": "Description: ..." 
+  }
+```
+
+## Get Orders
+```
+GET /orders
+```
+
+**Response**
+```
+Status 200
+  
+[
+  {
+    "id": 12,
+    "date": "2017-04-04 18:05",
+    "patient": { ... },
+    "type": "...",
+    "completed": true,
+    "description": "Description: ..." 
+  },
+  ...
+]
+```
+
+# Patients
+## Add patient
+```
+POST /patients/new
+```
+
+**Parameters**
+
+| Name | Type | Description |
+| :---: |:---:| ---|
+| username | String | User name to login |
+| password | String | Password to login |
+| name | String | Name of the patient |
+| lastname | String | Last name of the patient |
+| birthdate | Date | Birth date of the patient |
+| room | String | Room identifier |
+| description | String | Description of the patient |
+
+**Example**
+```
+{
+  "username": "halp_user01",
+  "password": "passwd01",
+  "name": "John",
+  "lastname": "Smith",
+  "birthdate" : "1975-01-04",
+  "room": "A1001",
+  "description": "John Smith is a ..."
+}
+```
+
+**Response**
+```
+Status 201
+  
+{
+  "id": "1",
+  "username": "halp_user01",
+  "password": "passwd01",
+  "name": "John",
+  "lastname": "Smith",
+  "birthdate" : "1975-01-04",
+  "room": "A1001",
+  "description": "John Smith is a ..."
+}
+```
+
+## Remove patient
+```
+DELETE /patients/:id
+```
+
+**Response**
+```
+Status: 204 No Content
+```
+
+```
+Status: 404 Not Found
+{
+  "message": "Not existing patient"
+}
+```
+
+## Edit patient
+```
+PUT /patients/:id
+```
+
+**Parameters**
+
+| Name | Type | Description |
+| :---: |:---:| ---|
+| username | String | User name to login |
+| password | String | Password to login |
+| name | String | Name of the patient |
+| lastname | String | Last name of the patient |
+| birthdate | Date | Birth date of the patient |
+| room | String | Room identifier |
+| description | String | Description of the patient |
+
+**Example**
+```
+{
+  "username": "halp_user01",
+  "password": "passwd01",
+  "name": "John",
+  "lastname": "Smith",
+  "birthdate" : "1975-01-04",
+  "room": "A1001",
+  "description": "John Smith is a ..."
+}
+```
+
+**Response**
+```
+Status 200
+  
+{
+  "id": "1",
+  "username": "halp_user01",
+  "password": "passwd01",
+  "name": "John",
+  "lastname": "Smith",
+  "birthdate" : "1975-01-04",
+  "room": "A1001",
+  "description": "John Smith is a ..."
+}
+```
+
+## Get Patients
+```
+GET /patients
+```
+
+**Response**
+```
+Status 200
+  
+[
+  {
+    "id": "1",
+    "username": "halp_user01",
+    "password": "passwd01",
+    "name": "John",
+    "lastname": "Smith",
+    "birthdate" : "1975-01-04",
+    "room": "A1001",
+    "description": "John Smith is a ..."
+  },
+  ...
+]
+```
