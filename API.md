@@ -343,96 +343,6 @@ Status 201
 
 
 # Items
-## Add item
-```
-POST /items/new
-```
-
-**Parameters**
-
-| Name | Type | Description |
-| :---: |:---:| ---|
-| name | String | Item name |
-| price |Float | Price |
-| image | String | Image URL |
-| description | String | Description |
-
-**Example**
-```
-{
-  "name": "The Times",
-  "price": 1.5,
-  "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/The-Times-5-June-2013.jpg",
-  "description": "the description of this..."
-}
-```
-
-**Response**
-```
-Status 201
-  
-{
-  "id": 12,
-  "name": "The Times",
-  "price": 1.5,
-  "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/The-Times-5-June-2013.jpg",
-  "description": "the description of this..."
-}
-```
-
-## Remove item
-```
-DELETE /items/:id
-```
-
-**Response**
-```
-Status: 204 No Content
-```
-
-```
-Status: 404 Not Found
-{
-  "message": "Not existing item"
-}
-```
-
-## Edit Item
-```
-PUT /items/:id
-```
-
-**Parameters**
-
-| Name | Type | Description |
-| :---: |:---:| ---|
-| name | String | Item name |
-| price |Float | Price |
-| image | String | Image URL |
-| description | String | Description |
-
-**Example**
-```
-{
-  "name": "The Times",
-  "price": 1.5,
-  "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/The-Times-5-June-2013.jpg",
-  "description": "the description of this..."
-}
-```
-
-**Response**
-```
-Status 200
-  
-{
-  "id": 12,
-  "name": "The Times",
-  "price": 1.5,
-  "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/The-Times-5-June-2013.jpg",
-  "description": "the description of this..."
-}
-```
 
 ## Get Items
 ```
@@ -455,6 +365,40 @@ Status 200
 ]
 ```
 
+## Order a product
+
+```
+POST /items/order
+```
+
+**Parameters**
+
+| Name | Type | Description |
+| :---: |:---:| ---|
+| date | String | Date |
+| patient | String | Patient username |
+| referenceNumber | number | Product ID |
+
+**Example**
+```
+{
+  "date": "2017-5-1T14:00:00Z",
+  "patient": "john",
+  "referenceNumber": 33
+}
+```
+
+**Response**
+```
+Status 201
+  
+{
+  "id": 600,
+  "date": "2017-5-1T14:00:00Z",
+  "patient": "john",
+  "referenceNumber": 33
+}
+```
 
 # Order
 
