@@ -10,5 +10,5 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.listen(port, () => {
-    console.log('API REST running');
+    console.log('API REST running on port 3000');
 });
