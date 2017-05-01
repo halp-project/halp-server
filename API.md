@@ -228,6 +228,40 @@ Status 200
 ]
 ```
 
+## Order a Book
+```
+POST /books/order
+```
+
+**Parameters**
+
+| Name | Type | Description |
+| :---: |:---:| ---|
+| date | String | Date |
+| patient | String | Patient username |
+| referenceNumber | number | Book ID |
+
+**Example**
+```
+{
+  "date": "2017-5-1T14:00:00Z",
+  "patient": "john",
+  "referenceNumber": 33
+}
+```
+
+**Response**
+```
+Status 201
+  
+{
+  "id": 600,
+  "date": "2017-5-1T14:00:00Z",
+  "patient": "john",
+  "referenceNumber": 33
+}
+```
+
 # Meals
 ## Get Next Menu
 ```
