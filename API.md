@@ -456,6 +456,13 @@ Status 200
 GET /orders
 ```
 
+**Parameters**
+
+| Name | Type | Description |
+| :---: |:---:| ---|
+| user | String | Filter by user. |
+
+
 **Response**
 ```
 Status 200
