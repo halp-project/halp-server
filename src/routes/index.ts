@@ -1,11 +1,8 @@
 import * as express from 'express';
+import { sayHi } from '../controllers/hi';
 
 const api: express.Router = express.Router();
 
-api.get('/hi/:name', (req: express.Request, res: express.Response) => {
-    res.send({
-        message: 'Hello, JOSE'
-    });
-});
+api.get('/hi', sayHi);
 
-export = api;
+export { api };
