@@ -1,0 +1,18 @@
+LOG:  database system was shut down at 2017-05-03 01:22:24 CEST
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  autovacuum launcher started
+LOG:  database system is ready to accept connections
+FATAL:  database "jorgesanzperez" does not exist
+FATAL:  database "halp" does not exist
+ERROR:  database "halp" already exists
+STATEMENT:  CREATE DATABASE halp;
+ERROR:  syntax error at or near "exit" at character 1
+STATEMENT:  exit;
+FATAL:  database "jorgesanzperez" does not exist
+FATAL:  role "postgres" does not exist
+FATAL:  role "postgres" does not exist
+FATAL:  role "root" does not exist
+LOG:  autovacuum launcher shutting down
+LOG:  received smart shutdown request
+LOG:  shutting down
+LOG:  database system is shut down
