@@ -14,6 +14,7 @@
     "dev": "npm run build && npm run watch",
     "lint": "tslint './src/**/*.ts'",
     "prepublish": "npm run build",
+    "start": "npm run build && node lib/index.js",
     "watch": "npm-run-all --parallel watch:*",
     "watch:ts": "tsc -w",
     "watch:js": "nodemon --watch lib"
