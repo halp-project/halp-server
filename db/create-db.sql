@@ -38,7 +38,7 @@ CREATE TABLE patient (
 
 CREATE TABLE book (
   ID SERIAL PRIMARY KEY,
-  name VARCHAR NOT NULL,
+  title VARCHAR NOT NULL,
   author VARCHAR,
   description VARCHAR NOT NULL,
   image VARCHAR NOT NULL
@@ -73,12 +73,13 @@ CREATE TABLE item (
 CREATE TABLE patientOrder (
   ID INTEGER PRIMARY KEY,
   orderDate TIMESTAMP NOT NULL,
-  idPatient VARCHAR REFERENCES patient(username)
+  idPatient VARCHAR REFERENCES patient(username),
+  completed BOOLEAN NOT NULL
 );
 
 
 CREATE TABLE bookCopy (
-  referenceNumber VARCHAR PRIMARY KEY,
+  referenceNumber SERIAL PRIMARY KEY,
   idBook INTEGER REFERENCES book(ID),
   reserved BOOLEAN NOT NULL 
 );
@@ -92,7 +93,7 @@ CREATE TABLE itemCopy (
 
 CREATE TABLE bookLoan (
   ID INTEGER PRIMARY KEY REFERENCES patientOrder(ID),
-  referenceNumber VARCHAR REFERENCES bookCopy(referenceNumber)
+  referenceNumber INTEGER  REFERENCES bookCopy(referenceNumber)
 ); 
 
 
