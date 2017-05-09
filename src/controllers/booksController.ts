@@ -11,7 +11,7 @@ var connectionString: string = 'postgres://jorgesanzperez@localhost:5432/halp';
 
 var db: IDatabase<any> = pgp(connectionString);
 
-function sayHi(req: Request, res: Response, next: any) {
+function addBook(req: Request, res: Response, next: any) {
     console.log(JSON.stringify(req.body) + 'HOLA');
     db.none('insert into book(title, author, description, image)' +
       'values(${title}, ${author}, ${description}, ${image})',
@@ -41,4 +41,4 @@ function getBooks(req: Request, res: Response, next: any) {
     });
 }
 
-export { sayHi, getBooks };
+export { addBook, getBooks };

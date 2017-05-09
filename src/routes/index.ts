@@ -1,9 +1,9 @@
 import * as express from 'express';
-import { sayHi, getBooks } from '../controllers/hi';
+import { addBook, getBooks } from '../controllers/booksController';
 
 const api: express.Router = express.Router();
 
-api.post('/hi', sayHi);
+api.post('/books', addBook);
 api.get('/books', getBooks);
 
-export { api };
+export default api;
