@@ -118,7 +118,7 @@ Status 401
 # Books
 ## Add book
 ```
-POST /books/new
+POST /books
 ```
 
 **Parameters**
@@ -483,7 +483,7 @@ Status 200
 # Patients
 ## Add patient
 ```
-POST /patients/new
+POST /patients
 ```
 
 **Parameters**
