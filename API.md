@@ -31,12 +31,19 @@ Status 400
 }
 ```
 
-
 ```
-Status 401
+Status 409
 
 {
   "message": "A user with that username already exists"
+}
+```
+
+```
+Status 500
+
+{
+  "message": "Error creating the user"
 }
 ```
 
