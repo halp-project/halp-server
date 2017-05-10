@@ -518,7 +518,6 @@ Status 201
 {
   "id": 1,
   "username": "halp_user01",
-  "password": "passwd01",
   "name": "John",
   "lastname": "Smith",
   "birthdate" : "1975-01-04",
@@ -603,7 +602,6 @@ Status 200
   {
     "id": 1,
     "username": "halp_user01",
-    "password": "passwd01",
     "name": "John",
     "lastname": "Smith",
     "birthdate" : "1975-01-04",
