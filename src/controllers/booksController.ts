@@ -7,12 +7,11 @@ var pgp: IMain = pgPromise({
     promiseLib: bluebird
 })
 
-var connectionString: string = 'postgres://jorgesanzperez@localhost:5432/halp';
+var connectionString: string = 'postgres://root:root@localhost:5432/halp';
 
 var db: IDatabase<any> = pgp(connectionString);
 
 function addBook(req: Request, res: Response, next: any) {
-    console.log(JSON.stringify(req.body) + 'HOLA');
     db.none('insert into book(title, author, description, image)' +
       'values(${title}, ${author}, ${description}, ${image})',
     req.body)
