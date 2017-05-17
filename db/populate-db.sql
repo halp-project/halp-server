@@ -1,4 +1,4 @@
-INSERT INTO book (name, author, description, image)
+INSERT INTO book (title, author, description, image)
   VALUES    ('Holy Bible', 'Good', 'Description: ...', 'url'),
             ('Treasure Island', 'Robert Louis Stevenson', 'Description: ...', 'url'),
             ('I, Robot', 'Robert Louis Stevenson', 'Description: ...', 'url'),
@@ -54,14 +54,14 @@ INSERT INTO employee (username, password, role)
             ('userAssistant01', 'assis1', 'assistant'),
             ('userAdmin01', 'admin1', 'admin');
 
-INSERT INTO patientOrder (ID, orderDate, idPatient)
-  VALUES    (1, '2013-10-19 10:23:54', 'john01'),
-            (2, '2013-10-19 10:23:54', 'john01'),
-            (3, '2013-10-19 10:23:54', 'john01'),
-            (4, '2013-10-19 10:23:54', 'john02'),
-            (5, '2013-10-19 10:23:54', 'john02'),
-            (6, '2013-10-19 10:23:54', 'john03'),
-            (7, '2013-10-19 10:23:54', 'john04');
+INSERT INTO patientOrder (ID, orderDate, idPatient, completed)
+  VALUES    (1, '2013-10-19 10:23:54', 'john01', TRUE),
+            (2, '2013-10-19 10:23:54', 'john01', FALSE),
+            (3, '2013-10-19 10:23:54', 'john01', TRUE),
+            (4, '2013-10-19 10:23:54', 'john02', FALSE),
+            (5, '2013-10-19 10:23:54', 'john02', TRUE),
+            (6, '2013-10-19 10:23:54', 'john03', FALSE),
+            (7, '2013-10-19 10:23:54', 'john04', TRUE);
 
 
 INSERT INTO bookLoan (ID, referenceNumber)
