@@ -25,7 +25,6 @@ CREATE TABLE employee (
   role role NOT NULL
 );
 
-
 CREATE TABLE patient (
   username VARCHAR PRIMARY KEY,
   password VARCHAR NOT NULL,
@@ -38,12 +37,11 @@ CREATE TABLE patient (
 
 CREATE TABLE book (
   ID SERIAL PRIMARY KEY,
-  name VARCHAR NOT NULL,
+  title VARCHAR NOT NULL,
   author VARCHAR,
   description VARCHAR NOT NULL,
   image VARCHAR NOT NULL
 );
-
 
 CREATE TABLE dish (
   ID SERIAL PRIMARY KEY,
@@ -53,13 +51,11 @@ CREATE TABLE dish (
   type dishType NOT NULL
 );
 
-
 CREATE TABLE menu (
   ID SERIAL PRIMARY KEY,
   menuDate TIMESTAMP NOT NULL,
   UNIQUE (menuDate)
 );
-
 
 CREATE TABLE item (
   ID SERIAL PRIMARY KEY,
@@ -69,38 +65,33 @@ CREATE TABLE item (
   price INTEGER NOT NULL
 );
 
-
 CREATE TABLE patientOrder (
   ID INTEGER PRIMARY KEY,
   orderDate TIMESTAMP NOT NULL,
-  idPatient VARCHAR REFERENCES patient(username)
+  idPatient VARCHAR REFERENCES patient(username),
+  completed BOOLEAN NOT NULL
 );
 
-
 CREATE TABLE bookCopy (
-  referenceNumber VARCHAR PRIMARY KEY,
+  referenceNumber SERIAL PRIMARY KEY,
   idBook INTEGER REFERENCES book(ID),
   reserved BOOLEAN NOT NULL 
 );
-
 
 CREATE TABLE itemCopy (
   referenceNumber VARCHAR PRIMARY KEY,
   idItem INTEGER REFERENCES item(ID)
 );
 
-
 CREATE TABLE bookLoan (
   ID INTEGER PRIMARY KEY REFERENCES patientOrder(ID),
-  referenceNumber VARCHAR REFERENCES bookCopy(referenceNumber)
+  referenceNumber INTEGER  REFERENCES bookCopy(referenceNumber)
 ); 
-
 
 CREATE TABLE purchase (
   ID INTEGER PRIMARY KEY REFERENCES patientOrder(ID),
   referenceNumber VARCHAR REFERENCES itemCopy(referenceNumber)
 );
-
 
 CREATE TABLE menuChoice (
   ID INTEGER PRIMARY KEY REFERENCES patientOrder(ID),
