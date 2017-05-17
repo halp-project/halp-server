@@ -11,7 +11,7 @@ POST /workers/signup
 | :---: |:---:| --- |
 | username | String | Worker username |
 | password | String | Worker password |
-| role | String | Worker role: <br> * *assistant* <br> * *books* <br> * *meals* <br> * *shop* <br> * *manager* |
+| role | String | Worker role: <br> * *assistant* <br> * *book* <br> * *food* <br> * *kiosk* <br> * *admin* |
 
 **Response**
 
