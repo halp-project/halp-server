@@ -1,17 +1,13 @@
 import { Request, Response } from 'express';
-import * as bluebird from 'bluebird';
-import { IMain, IDatabase } from 'pg-promise';
-import * as pgPromise from 'pg-promise';
 import * as bcrypt from 'bcrypt-nodejs';
 
 import { User } from '../models/user';
 import { db } from '../app';
 import { createToken } from '../services/index';
+import { getUserPasswordHash } from '../services/workers-auth';
 
 function signUp(req: Request, res: Response) {
   let user: User = new User(req.body.username, req.body.role, req.body.password);
-
-  console.log('' + user.password + user.username + user.role);
 
   if (checkUserProperties(user)) {
     bcrypt.hash(req.body.password, null, null, (err, passwordHash) => {
@@ -37,7 +33,28 @@ function signUp(req: Request, res: Response) {
 }
 
 function logIn(req: Request, res: Response) {
-
+  if (checkLogInProperties(req.body.username, req.body.password)) {
+    let user: User = new User(req.body.username, null, req.body.password);
+    isUserAlreadyRegistered(req.body.username)
+      .then((isUserAlreadyRegistered: boolean) => {
+        if (!isUserAlreadyRegistered) {
+          res.status(401).send({ message: "The username or password don't match." });
+        } else {
+          getUserPasswordHash(req.body.username)
+            .then((passwordHash: string) => {
+              bcrypt.compare(req.body.password, passwordHash, function (err, match) {
+                if (match) {
+                  res.status(200).send({ id_token: createToken(user) })
+                } else {
+                  res.status(401).send({ message: "The username or password don't match" });
+                }
+              });
+            });
+        }
+      });
+  } else {
+    res.status(400).send({ message: "You must send the username and the password" });
+  }
 }
 
 function isUserAlreadyRegistered(username: string): Promise<boolean> {
@@ -45,7 +62,10 @@ function isUserAlreadyRegistered(username: string): Promise<boolean> {
     username: username
   })
     .then(data => {
-      if (data) return true;
+      if (data) {
+        return true;
+      }
+
       return false;
     });
 }
@@ -60,6 +80,18 @@ function checkUserProperties(user: User): boolean {
   }
 
   if (user.role === null || user.role === '') {
+    return false;
+  }
+
+  return true;
+}
+
+function checkLogInProperties(username: string, password: string) {
+  if (username === null || username === '') {
+    return false;
+  }
+
+  if (password === null || password === '') {
     return false;
   }
 
