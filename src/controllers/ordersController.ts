@@ -5,7 +5,7 @@ import * as pgPromise from 'pg-promise';
 
 var pgp: IMain = pgPromise({
     promiseLib: bluebird
-})
+});
 
 var connectionString: string = 'postgres://root:root@localhost:5432/halp';
 
@@ -13,9 +13,25 @@ var db: IDatabase<any> = pgp(connectionString);
 
 function deleteOrder(req: Request, res: Response, next: any){
     var orderID = parseInt(req.params.id);
-    db.result('delete from book where id = $1', orderID)
+    db.result('delete from patientOrder po where po.id = $1', orderID)
     .then(function () {
       res.status(200).json({done: true});
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
+function changeStateOrder(req: Request, res: Response, next: any){
+    console.log(req.body);
+    db.none('update patientOrder set completed=$2 where id=$1',
+      [parseInt(req.params.id), req.body.completed])
+    .then(function () {
+      res.status(200)
+        .json({
+          status: 'success',
+          message: 'Order State Changed'
+        });
     })
     .catch(function (err) {
       return next(err);
@@ -43,4 +59,4 @@ function getOrders(req: Request, res: Response, next: any) {
     });
 }
 
-export { getOrders };
+export { getOrders, changeStateOrder, deleteOrder };
