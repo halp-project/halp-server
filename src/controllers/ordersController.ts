@@ -23,12 +23,12 @@ function deleteOrder(req: Request, res: Response, next: any){
 }
 
 function getOrders(req: Request, res: Response, next: any) {
-  db.any( "select b.title AS title, po.id, p.name, p.lastname, p.room, po.orderDate, 'book' AS type\n" +
+  db.any( "select b.title AS title, po.id, po.completed, p.name, p.lastname, p.room, po.orderDate, 'book' AS type\n" +
 	        "from patientOrder po, patient p, bookloan bl, bookCopy bc, book b\n" +
 	        "where po.idpatient = p.username and po.id = bl.id and bl.referenceNumber = bc.referenceNumber " +
           "and bc.idBook = b.id\n" +
           "UNION ALL\n" +
-          "select i.name AS title, po.id, p.name, p.lastname, p.room, po.orderDate, 'item' AS type\n" +
+          "select i.name AS title, po.id, po.completed, p.name, p.lastname, p.room, po.orderDate, 'item' AS type\n" +
 	        "from patientOrder po, patient p, purchase pu, itemCopy ic, item i\n" +
 	        "where po.idpatient = p.username and po.id = pu.id and pu.referenceNumber = ic.referenceNumber " +
           ' and ic.idItem = i.id')
