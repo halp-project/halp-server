@@ -7,6 +7,7 @@ import { IMain, IDatabase } from 'pg-promise';
 import * as pgPromise from 'pg-promise';
 
 import api from './routes/index';
+import { DB } from './config';
 
 const app: express.Express = express();
 
@@ -14,7 +15,7 @@ var pgp: IMain = pgPromise({
   promiseLib: bluebird
 })
 
-var connectionString: string = 'postgres://jorgesanzperez@localhost:5432/halp';
+var connectionString: string = DB;
 
 const db: IDatabase<any> = pgp(connectionString);
 
