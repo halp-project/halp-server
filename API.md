@@ -64,7 +64,8 @@ POST /workers/login
 Status 200
   
 {
-  "id_token": "aleatory-token"
+  "id_token": "aleatory-token",
+  "role": "user-role"
 }
 ```
 
