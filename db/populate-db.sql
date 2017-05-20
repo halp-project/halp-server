@@ -1,3 +1,5 @@
+\c halp;
+
 INSERT INTO book (title, author, description, image)
   VALUES    ('Holy Bible', 'Good', 'Description: ...', 'url'),
             ('Treasure Island', 'Robert Louis Stevenson', 'Description: ...', 'url'),
