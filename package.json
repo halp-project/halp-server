@@ -33,11 +33,13 @@
   },
   "homepage": "https://github.com/halp-project/halp-server#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "cors": "^2.8.3",
     "express": "^4.15.2",
     "jwt-simple": "^0.5.1",
+    "moment": "^2.18.1",
     "morgan": "^1.8.1",
     "pg": "^6.1.5",
     "pg-hstore": "^2.3.2",
@@ -45,11 +47,13 @@
     "sequelize": "^3.30.4"
   },
   "devDependencies": {
+    "@types/bcrypt-nodejs": "0.0.30",
     "@types/bluebird": "^3.5.3",
     "@types/body-parser": "^1.16.3",
     "@types/cors": "^2.8.1",
     "@types/express": "^4.0.35",
     "@types/jwt-simple": "^0.5.33",
+    "@types/moment": "^2.13.0",
     "@types/morgan": "^1.7.32",
     "@types/pg-promise": "^5.4.3",
     "@types/sequelize": "^4.0.51",

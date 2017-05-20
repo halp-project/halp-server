@@ -11,7 +11,7 @@ POST /workers/signup
 | :---: |:---:| --- |
 | username | String | Worker username |
 | password | String | Worker password |
-| role | String | Worker role: <br> * *assistant* <br> * *books* <br> * *meals* <br> * *shop* <br> * *manager* |
+| role | String | Worker role: <br> * *assistant* <br> * *book* <br> * *food* <br> * *kiosk* <br> * *admin* |
 
 **Response**
 
@@ -31,12 +31,19 @@ Status 400
 }
 ```
 
-
 ```
-Status 401
+Status 409
 
 {
   "message": "A user with that username already exists"
+}
+```
+
+```
+Status 500
+
+{
+  "message": "Error creating the user"
 }
 ```
 
@@ -57,7 +64,8 @@ POST /workers/login
 Status 200
   
 {
-  "id_token": "aleatory-token"
+  "id_token": "aleatory-token",
+  "role": "user-role"
 }
 ```
 
@@ -118,7 +126,7 @@ Status 401
 # Books
 ## Add book
 ```
-POST /books/new
+POST /books
 ```
 
 **Parameters**
@@ -483,7 +491,7 @@ Status 200
 # Patients
 ## Add patient
 ```
-POST /patients/new
+POST /patients
 ```
 
 **Parameters**
@@ -518,7 +526,6 @@ Status 201
 {
   "id": 1,
   "username": "halp_user01",
-  "password": "passwd01",
   "name": "John",
   "lastname": "Smith",
   "birthdate" : "1975-01-04",
@@ -603,7 +610,6 @@ Status 200
   {
     "id": 1,
     "username": "halp_user01",
-    "password": "passwd01",
     "name": "John",
     "lastname": "Smith",
     "birthdate" : "1975-01-04",

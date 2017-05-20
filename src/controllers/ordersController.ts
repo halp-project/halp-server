@@ -3,13 +3,7 @@ import * as bluebird from 'bluebird';
 import {IMain, IDatabase} from 'pg-promise';
 import * as pgPromise from 'pg-promise';
 
-var pgp: IMain = pgPromise({
-    promiseLib: bluebird
-});
-
-var connectionString: string = 'postgres://root:root@localhost:5432/halp';
-
-var db: IDatabase<any> = pgp(connectionString);
+import { db } from '../app';
 
 function deleteOrder(req: Request, res: Response, next: any){
     var orderID = parseInt(req.params.id);
