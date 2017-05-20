@@ -4,7 +4,7 @@ import * as bcrypt from 'bcrypt-nodejs';
 import { User } from '../models/user';
 import { db } from '../app';
 import { createToken } from '../services/index';
-import { getUserPasswordHash } from '../services/workers-auth';
+import { getUserPasswordHash, getUserRole } from '../services/workers-auth';
 
 function signUp(req: Request, res: Response) {
   let user: User = new User(req.body.username, req.body.role, req.body.password);
@@ -44,7 +44,13 @@ function logIn(req: Request, res: Response) {
             .then((passwordHash: string) => {
               bcrypt.compare(req.body.password, passwordHash, function (err, match) {
                 if (match) {
-                  res.status(200).send({ id_token: createToken(user) })
+                  getUserRole(req.body.username)
+                    .then((role: string) => {
+                      res.status(200).send({
+                        id_token: createToken(user),
+                        role: role
+                      })
+                    });
                 } else {
                   res.status(401).send({ message: "The username or password don't match" });
                 }
