@@ -8,7 +8,7 @@ const api: express.Router = express.Router();
 
 api.post('/books', addBook);
 api.get('/books', getBooks);
-api.get('/books/:id', loanBook);
+api.post('/books/:id', loanBook);
 
 api.get('/orders', getOrders);
 api.put('/orders/:id', changeStateOrder);

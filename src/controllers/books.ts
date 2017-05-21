@@ -43,21 +43,16 @@ function loanBook(req: Request, res: Response, next: any){
   var bookID = parseInt(req.params.id);
   db.any('select * from bookCopy bc where bc.idBook = $1', bookID)
   .then(data => {
-    console.log(data.length);
     let available = false;
     let idCopy= 0;
     
     for(let i = 0; i < data.length; i++){
-      console.log('It: -> ' + i);
       if(!data[i].reserved){
         available = true;
-        console.log(data[i]);
         idCopy = data[i].referencenumber;
         break;
       }
     }
-
-    console.log('Available: '+ available+' / IDCopy: '+idCopy);
 
     if(available){
       let username = 'john01'; //getUserID(req.body.token);
