@@ -4,7 +4,7 @@ import * as bcrypt from 'bcrypt-nodejs';
 import { User } from '../models/user';
 import { db } from '../app';
 import { createToken } from '../services/index';
-import { getUserPasswordHash, getUserRole } from '../services/workers-auth';
+import { getUserPasswordHash, getUserRole } from '../services/workers-auth.service';
 
 function signUp(req: Request, res: Response) {
   let user: User = new User(req.body.username, req.body.role, req.body.password);
