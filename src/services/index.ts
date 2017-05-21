@@ -6,7 +6,7 @@ import { JWT_SECRET } from '../config';
 
 export function createToken(user: User) {
     const payload = {
-        sub: user.id,
+        sub: user.username,
         iat: moment().unix(), // Date of token creation (current system date)
         exp: moment().add(14, 'days').unix() // Date of token expiration
     };

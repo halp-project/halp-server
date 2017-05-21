@@ -48,14 +48,6 @@ INSERT INTO patient (username, password, name, lastname, description, birthdate,
             ('john06', 'passwd06', 'John', 'Smith', 'Description: ...', '1975-04-13', 'A1001'),
             ('john07', 'passwd07', 'John', 'Smith', 'Description: ...', '1975-04-13', 'A1001');
 
-INSERT INTO employee (username, password, role)
-  VALUES    ('userBooks01', 'books1', 'book'),
-            ('userBooks02', 'books2', 'book'),
-            ('userKiosk01', 'kiosk1', 'kiosk'),
-            ('userfood01', 'food1', 'food'),
-            ('userAssistant01', 'assis1', 'assistant'),
-            ('userAdmin01', 'admin1', 'admin');
-
 INSERT INTO patientOrder (ID, orderDate, idPatient, completed)
   VALUES    (1, '2013-10-19 10:23:54', 'john01', TRUE),
             (2, '2013-10-19 10:23:54', 'john01', FALSE),
@@ -64,7 +56,6 @@ INSERT INTO patientOrder (ID, orderDate, idPatient, completed)
             (5, '2013-10-19 10:23:54', 'john02', TRUE),
             (6, '2013-10-19 10:23:54', 'john03', FALSE),
             (7, '2013-10-19 10:23:54', 'john04', TRUE);
-
 
 INSERT INTO bookLoan (ID, referenceNumber)
   VALUES    (2, 'ref0004'),
