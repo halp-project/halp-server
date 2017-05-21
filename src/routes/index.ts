@@ -1,6 +1,6 @@
 import * as express from 'express';
 
-import { addBook, getBooks } from '../controllers/books';
+import { addBook, getBooks, loanBook } from '../controllers/books';
 import { signUp, logIn } from '../controllers/workers-auth';
 import { getOrders, changeStateOrder, deleteOrder } from '../controllers/ordersController';
 
@@ -8,6 +8,7 @@ const api: express.Router = express.Router();
 
 api.post('/books', addBook);
 api.get('/books', getBooks);
+api.get('/books/:id', loanBook);
 
 api.get('/orders', getOrders);
 api.put('/orders/:id', changeStateOrder);
