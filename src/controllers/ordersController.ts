@@ -53,4 +53,25 @@ function getOrders(req: Request, res: Response, next: any) {
     });
 }
 
-export { getOrders, changeStateOrder, deleteOrder };
+function getUserOrders(req: Request, res: Response, next: any) {
+  let username = getUsername(req.body.token);
+  db.any( "select b.title AS title, po.id, po.completed, p.name, p.lastname, p.room, po.orderDate, 'book' AS type\n" +
+                "from patientOrder po, patient p, bookloan bl, bookCopy bc, book b\n" +
+                "where po.idpatient = p.username and po.id = bl.id and bl.referenceNumber = bc.referenceNumber " +
+          "and bc.idBook = b.id and p.username = $1\n" +
+          "UNION ALL\n" +
+          "select i.name AS title, po.id, po.completed, p.name, p.lastname, p.room, po.orderDate, 'item' AS type\n" +
+                "from patientOrder po, patient p, purchase pu, itemCopy ic, item i\n" +
+                "where po.idpatient = p.username and po.id = pu.id and pu.referenceNumber = ic.referenceNumber " +
+          ' and ic.idItem = i.id and p.username = $1', username)
+  .then(data => {
+     res.status(200)
+            .json({
+              data: data
+        });
+  }).catch(function (err){
+    return next(err);
+  });
+}
+
+export { getOrders, changeStateOrder, deleteOrder, getUserOrders };
