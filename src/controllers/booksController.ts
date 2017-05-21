@@ -16,7 +16,6 @@ function addBook(req: Request, res: Response, next: any) {
       });
     })
     .catch(function (err) {
-      console.log('MyError:'+err);
       return next(err);
     });
 }

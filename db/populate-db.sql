@@ -1,11 +1,11 @@
 \c halp;
 
 INSERT INTO book (title, author, description, image)
-  VALUES    ('Holy Bible', 'Good', 'Description: ...', 'url'),
-            ('Treasure Island', 'Robert Louis Stevenson', 'Description: ...', 'url'),
-            ('I, Robot', 'Robert Louis Stevenson', 'Description: ...', 'url'),
-            ('The Time Machine', 'H. G. Wells', 'Description: ...', 'url'),
-            ('Moby-Dick', 'Herman Melville', 'Description: ...', 'url');
+  VALUES    ('Holy Bible', 'Good', 'Description: ...', 'https://s-media-cache-ak0.pinimg.com/originals/a1/69/bf/a169bf267795e9af8cfd963aab1b066f.jpg'),
+            ('Treasure Island', 'Robert Louis Stevenson', 'Description: ...', 'http://res.cloudinary.com/dk-find-out/image/upload/q_80,w_640/9780141358352_TREASURE_ISLAND_CMYK_e5ejgn.jpg'),
+            ('I, Robot', 'Robert Louis Stevenson', 'Description: ...', 'https://upload.wikimedia.org/wikipedia/en/d/d5/I_robot.jpg'),
+            ('The Time Machine', 'H. G. Wells', 'Description: ...', 'http://www.book-review-circle.com/images/timemachine.jpg'),
+            ('Moby-Dick', 'Herman Melville', 'Description: ...', 'https://imagessl2.casadellibro.com/a/l/t0/52/9788499086552.jpg');
 
 INSERT INTO item (name, description, image, price)
     VALUES  ('El Mundo', 'El ...', 'https://...', 2),
