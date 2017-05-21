@@ -1,8 +1,8 @@
 import * as express from 'express';
 
-import { addBook, getBooks } from '../controllers/books';
-import { signUp, logIn } from '../controllers/workers-auth';
-import { getOrders, changeStateOrder, deleteOrder } from '../controllers/ordersController';
+import { addBook, getBooks } from '../controllers/books.controller';
+import { signUp, logIn } from '../controllers/workers-auth.controller';
+import { getOrders, changeStateOrder, deleteOrder } from '../controllers/orders.controller';
 
 const api: express.Router = express.Router();
 
