@@ -1,7 +1,7 @@
 import * as express from 'express';
 
-import { addBook, getBooks, loanBook } from '../controllers/books';
-import { signUp, logIn } from '../controllers/workers-auth';
+import { addBook, getBooks, loanBook } from '../controllers/books.controller';
+import { signUp, logIn } from '../controllers/workers-auth.controller';
 import { patientsLogIn } from '../controllers/patients-auth.controller';
 import { getOrders, changeStateOrder, deleteOrder } from '../controllers/orders.controller';
 

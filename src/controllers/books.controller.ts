@@ -2,11 +2,11 @@ import { Request, Response } from 'express';
 import * as bluebird from 'bluebird';
 import { IMain, IDatabase } from 'pg-promise';
 import * as pgPromise from 'pg-promise';
+import { decodeToken } from '../services/index';
 
 import { db } from '../app';
 
 function addBook(req: Request, res: Response, next: any) {
-  
   db.none('insert into book(title, author, description, image)' +
     'values(${title}, ${author}, ${description}, ${image})',
     req.body)
@@ -39,7 +39,8 @@ function getBooks(req: Request, res: Response, next: any) {
 }
 
 function loanBook(req: Request, res: Response, next: any){
-
+  
+  var decode = decodeToken(req.headers.token);
   var bookID = parseInt(req.params.id);
   db.any('select * from bookCopy bc where bc.idBook = $1', bookID)
   .then(data => {
@@ -53,9 +54,9 @@ function loanBook(req: Request, res: Response, next: any){
         break;
       }
     }
-
+    
     if(available){
-      let username = 'john01'; //getUserID(req.body.token);
+      let username = decode.sub;
       db.one( 'insert into patientOrder(orderDate, idPatient, completed) ' +
               'values( $1, $2, FALSE) ' +
               'RETURNING id', [new Date(), username])

@@ -13,3 +13,7 @@ export function createToken(user: User) {
 
     return jwt.encode(payload, JWT_SECRET);
 }
+
+export function decodeToken(token: string){
+    return jwt.decode(token, JWT_SECRET);
+}
