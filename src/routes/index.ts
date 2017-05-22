@@ -1,6 +1,6 @@
 import * as express from 'express';
 
-import { addBook, getBooks } from '../controllers/books.controller';
+import { addBook, getBooks, loanBook } from '../controllers/books.controller';
 import { signUp, logIn } from '../controllers/workers-auth.controller';
 import { patientsLogIn } from '../controllers/patients-auth.controller';
 import { getOrders, changeStateOrder, deleteOrder } from '../controllers/orders.controller';
@@ -9,6 +9,7 @@ const api: express.Router = express.Router();
 
 api.post('/books', addBook);
 api.get('/books', getBooks);
+api.post('/books/:id', loanBook);
 
 api.get('/orders', getOrders);
 api.put('/orders/:id', changeStateOrder);
