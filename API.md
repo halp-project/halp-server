@@ -102,7 +102,8 @@ POST /patients/login
 Status 200
   
 {
-  "id_token": "aleatory-token"
+  "id_token": "aleatory-token",
+  "username": "john"
 }
 ```
 
