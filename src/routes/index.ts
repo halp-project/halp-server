@@ -12,7 +12,7 @@ api.get('/books', getBooks);
 api.post('/books/:id', loanBook);
 
 api.get('/orders', getOrders);
-api.post('/orders', getUserOrders);
+api.get('/orders/user', getUserOrders);
 api.put('/orders/:id', changeStateOrder);
 api.delete('/orders/:id', deleteOrder);
 
