@@ -1,17 +1,20 @@
 import { Request, Response } from 'express';
 import * as bcrypt from 'bcrypt-nodejs';
 
-import { User } from '../models/user';
+import { Worker } from '../models/worker';
 import { db } from '../app';
 import { createToken } from '../services/index';
 import { getUserPasswordHash, getUserRole } from '../services/workers-auth.service';
 
 function signUp(req: Request, res: Response) {
-  let user: User = new User(req.body.username, req.body.role, req.body.password);
+  let user: Worker = new Worker();
+  user.username = req.body.username;
+  user.role = req.body.role;
+  user.password = req.body.password;
 
   if (checkUserProperties(user)) {
     bcrypt.hash(req.body.password, null, null, (err, passwordHash) => {
-      let user: User = new User(req.body.username, req.body.role, passwordHash);
+      user.password = passwordHash;
 
       isUserAlreadyRegistered(user.username).then((isUserAlreadyRegistered: boolean) => {
         if (isUserAlreadyRegistered) {
@@ -34,7 +37,9 @@ function signUp(req: Request, res: Response) {
 
 function logIn(req: Request, res: Response) {
   if (checkLogInProperties(req.body.username, req.body.password)) {
-    let user: User = new User(req.body.username, null, req.body.password);
+    let user: Worker = new Worker();
+    user.username = req.body.username;
+    user.password = req.body.password;
     isUserAlreadyRegistered(req.body.username)
       .then((isUserAlreadyRegistered: boolean) => {
         if (!isUserAlreadyRegistered) {
@@ -49,7 +54,7 @@ function logIn(req: Request, res: Response) {
                       res.status(200).send({
                         id_token: createToken(user),
                         role: role
-                      })
+                      });
                     });
                 } else {
                   res.status(401).send({ message: "The username or password don't match" });
@@ -76,7 +81,7 @@ function isUserAlreadyRegistered(username: string): Promise<boolean> {
     });
 }
 
-function checkUserProperties(user: User): boolean {
+function checkUserProperties(user: Worker): boolean {
   if (user.username === null || user.username === '') {
     return false;
   }
