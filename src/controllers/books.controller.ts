@@ -17,6 +17,22 @@ function deleteBook(req: Request, res: Response, next: any) {
     });
 }
 
+function changeInfoBook(req: Request, res: Response, next: any) {
+  console.log(req.body);
+  db.none('update book set title=$2, author=$3, description=$4, image=$5 where id=$1',
+    [parseInt(req.params.id), req.body.title, req.body.author, req.body.description, req.body.image])
+    .then(function () {
+      res.status(200)
+        .json({
+          status: 'success',
+          message: 'Book info Changed'
+        });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
 function addBook(req: Request, res: Response, next: any) {
   db.none('insert into book(title, author, description, image)' +
     'values(${title}, ${author}, ${description}, ${image})',
@@ -98,4 +114,4 @@ function loanBook(req: Request, res: Response, next: any){
 
 }
 
-export { deleteBook, addBook, getBooks, loanBook };
+export { deleteBook, changeInfoBook, addBook, getBooks, loanBook };
