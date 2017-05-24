@@ -6,6 +6,33 @@ import { decodeToken } from '../services/index';
 
 import { db } from '../app';
 
+function deleteBook(req: Request, res: Response, next: any) {
+  var bookID = parseInt(req.params.id);
+  db.result('delete from book po where po.id = $1', bookID)
+    .then(function () {
+      res.status(200).json({ done: true });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
+function changeInfoBook(req: Request, res: Response, next: any) {
+  console.log(req.body);
+  db.none('update book set title=$2, author=$3, description=$4, image=$5 where id=$1',
+    [parseInt(req.params.id), req.body.title, req.body.author, req.body.description, req.body.image])
+    .then(function () {
+      res.status(200)
+        .json({
+          status: 'success',
+          message: 'Book info Changed'
+        });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
 function addBook(req: Request, res: Response, next: any) {
   db.none('insert into book(title, author, description, image)' +
     'values(${title}, ${author}, ${description}, ${image})',
@@ -39,14 +66,14 @@ function getBooks(req: Request, res: Response, next: any) {
 }
 
 function loanBook(req: Request, res: Response, next: any){
-  
+
   var decode = decodeToken(req.headers.token);
   var bookID = parseInt(req.params.id);
   db.any('select * from bookCopy bc where bc.idBook = $1', bookID)
   .then(data => {
     let available = false;
     let idCopy= 0;
-    
+
     for(let i = 0; i < data.length; i++){
       if(!data[i].reserved){
         available = true;
@@ -54,7 +81,7 @@ function loanBook(req: Request, res: Response, next: any){
         break;
       }
     }
-    
+
     if(available){
       let username = decode.sub;
       db.one( 'insert into patientOrder(orderDate, idPatient, completed) ' +
@@ -68,7 +95,7 @@ function loanBook(req: Request, res: Response, next: any){
       .catch(err => {
         return next(err);
       });
-      
+
       res.status(200)
         .json({
           done: true
@@ -87,4 +114,4 @@ function loanBook(req: Request, res: Response, next: any){
 
 }
 
-export { addBook, getBooks, loanBook };
+export { deleteBook, changeInfoBook, addBook, getBooks, loanBook };
